@@ -1,8 +1,9 @@
-Here's a `README.md` file for your FastAPI-based project with user authentication and templating setup:
+
 
 ---
 
-# Senthuron Real Estate Portal
+# Senthuron AppCopilot
+
 
 ## Overview
 **Senthuron** is a lightweight web application built with **FastAPI** for managing user sign-up, login, and navigation across a real estate dashboard. It utilizes **Jinja2 templating** and serves static content like CSS and images, providing a smooth frontend-backend integration.
