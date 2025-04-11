@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AppCopilot - Login</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      width: 900px;
+      height: 500px;
+      background-color: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-section {
+      width: 50%;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid #eee;
+    }
+
+    .form-section img.logo {
+      width: 160px;
+      margin-bottom: 30px;
+    }
+
+    .form-section input[type="email"],
+    .form-section input[type="password"] {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      font-size: 14px;
+    }
+
+    .form-section .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .form-section .options label {
+      display: flex;
+      align-items: center;
+    }
+
+    .form-section .options a {
+      text-decoration: none;
+      color: #f37021;
+    }
+
+    .form-section button {
+      width: 100%;
+      background-color: black;
+      color: white;
+      padding: 12px;
+      border-radius: 25px;
+      border: none;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .form-section .new-account {
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .form-section .new-account a {
+      color: #f37021;
+      text-decoration: none;
+    }
+
+    .right-section {
+      width: 50%;
+      background: linear-gradient(to bottom right, #bfe3ff, #ffd8a8);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #000;
+    }
+
+    .right-section h3 {
+      font-size: 14px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .right-section h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .right-section p {
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .right-section img.house-img {
+      width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left: Login Form -->
+    <div class="form-section">
+      <img src="/static/images/logo.png" class="logo" alt="AppCopilot Logo" />
+      <form method="POST" action="/login">
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <div class="options">
+          <label>
+            <input type="checkbox" name="remember"> Remember me
+          </label>
+          <a href="#">Reset Password?</a>
+        </div>
+        <button type="submit">Log in</button>
+      </form>
+      <div class="new-account">
+        Don't have account yet? <a href="/">New Account</a>
+      </div>
+    </div>
+
+    <!-- Right: Promo -->
+    <div class="right-section">
+      <h3>Welcome to AppCopilot</h3>
+      <h1>Compare Your Property</h1>
+      <p>Discover homes that match your lifestyle.</p>
+      <img src="/static/images/house.png" class="house-img" alt="House Image">
+    </div>
+  </div>
+</body>
+</html>

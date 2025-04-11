@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | AppCopilot</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f9f9f9;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: #fff;
+      padding: 30px 20px;
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .sidebar .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .sidebar .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .sidebar nav a {
+      display: block;
+      padding: 12px 16px;
+      border-radius: 10px;
+      color: #333;
+      text-decoration: none;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .sidebar nav a.active, .sidebar nav a:hover {
+      background-color: #f37021;
+      color: white;
+    }
+
+    .welcome {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .main {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .main h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-box {
+      flex: 1;
+      padding: 20px;
+      border-radius: 16px;
+      color: white;
+      font-weight: 600;
+    }
+
+    .stat-orange { background-color: #ffe3cb; color: #333; }
+    .stat-purple { background-color: #e2e5ff; color: #333; }
+    .stat-blue { background-color: #d9f3ff; color: #333; }
+    .stat-light { background-color: #f7f7f7; color: #333; }
+
+    .stat-box span {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .stat-box strong {
+      font-size: 20px;
+    }
+
+    .charts-section {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .line-chart, .pie-chart {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      flex: 1;
+    }
+
+    .hero-section {
+      background: linear-gradient(to right, #b2e0ff, #ffd8a8);
+      border-radius: 20px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-text {
+      max-width: 50%;
+    }
+
+    .hero-text h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text button {
+      padding: 10px 20px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .hero-image img {
+      height: 150px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">
+      <img src="/static/images/logo.png" alt="AppCopilot Logo">
+
+    </div>
+    <nav>
+      <a href="#" class="active">Dashboard</a>
+      <a href="/compare_property">Search Property</a>
+      <a href="#">Favourite</a>
+      <a href="#">Notifications</a>
+      <a href="#">Settings</a>
+      <a href="#">Support</a>
+      <a href="#">API Credentials</a>
+    </nav>
+    <div class="welcome">
+      Welcome back 👋<br>
+      <strong>Johnathan</strong>
+    </div>
+  </div>
+  <div class="main">
+    <h1>Dashboard</h1>
+
+    <div class="stats">
+      <div class="stat-box stat-orange">
+        <span>Total Properties</span>
+        <strong>7,210</strong>
+      </div>
+      <div class="stat-box stat-purple">
+        <span>Active Listings</span>
+        <strong>510</strong>
+      </div>
+      <div class="stat-box stat-blue">
+        <span>Lease (expiring in 3 Months)</span>
+        <strong>90k</strong>
+      </div>
+      <div class="stat-box stat-light">
+        <span>Total Showings</span>
+        <strong>90k</strong>
+      </div>
+    </div>
+
+    <div class="charts-section">
+      <div class="line-chart">
+        <h3>Total Visits</h3>
+        <canvas id="visitsChart"></canvas>
+      </div>
+      <div class="pie-chart">
+        <h3>Traffic By Zip Code</h3>
+        <canvas id="trafficChart"></canvas>
+      </div>
+    </div>
+
+    <div class="hero-section">
+      <div class="hero-text">
+        <h2>Find The Suggested Rent</h2>
+        <p>For your property that match you.</p>
+        <button>Compare Now</button>
+      </div>
+      <div class="hero-image">
+        <img src="/static/images/house.png" alt="House Image">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ctxLine = document.getElementById('visitsChart');
+    new Chart(ctxLine, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Visits',
+          data: [12000000, 15000000, 22000000, 19000000, 23000000, 28000000],
+          borderColor: '#f37021',
+          backgroundColor: 'rgba(243,112,33,0.1)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+
+    const ctxPie = document.getElementById('trafficChart');
+    new Chart(ctxPie, {
+      type: 'doughnut',
+      data: {
+        labels: ['Zip Code A', 'Zip Code B', 'Zip Code C', 'Zip Code D'],
+        datasets: [{
+          label: 'Traffic Share',
+          data: [38.5, 22.5, 30.8, 8.1],
+          backgroundColor: ['#f37021', '#8e44ad', '#3498db', '#f1c40f']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

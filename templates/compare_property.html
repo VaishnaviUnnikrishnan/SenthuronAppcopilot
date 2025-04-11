@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compare Property</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md p-6 space-y-6">
+        <div class="flex items-center space-x-2">
+            <img src="/static/images/logo.png" alt="App Logo" class="w-8 h-8">
+
+        </div>
+        <nav class="space-y-4 text-gray-700">
+            <a href="#" class="block font-medium text-orange-500">Search Property</a>
+            <a href="#" class="block">Favourite</a>
+            <a href="#" class="block">Notifications</a>
+            <a href="#" class="block">Settings</a>
+            <a href="#" class="block">Support</a>
+            <a href="#" class="block">API Credentials</a>
+        </nav>
+        <div class="mt-10">
+            <div class="text-sm text-gray-500">Welcome Back 👋</div>
+            <div class="font-bold text-lg">Johnathan</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">Compare Property</h1>
+            <div class="flex gap-4">
+                <button class="bg-black text-white px-4 py-2 rounded">Full Data</button>
+                <button class="bg-orange-500 text-white px-4 py-2 rounded">Save Search</button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex gap-4 mb-6">
+            <input type="text" placeholder="Search location" class="border px-4 py-2 rounded w-48">
+            <select class="border px-4 py-2 rounded w-48">
+                <option>Amenities</option>
+            </select>
+            <select class="border px-4 py-2 rounded w-48">
+                <option>Square Foot</option>
+            </select>
+            <select class="border px-4 py-2 rounded w-48">
+                <option>Leasing End Date Range</option>
+            </select>
+            <select class="border px-4 py-2 rounded w-48">
+                <option>Listing Type</option>
+            </select>
+            <label class="flex items-center space-x-2 ml-auto">
+                <input type="checkbox" class="form-checkbox">
+                <span>Select All</span>
+            </label>
+        </div>
+
+        <!-- Listing Header -->
+        <h2 class="text-lg font-semibold mb-4">Madison Seattle Rental Listings</h2>
+        <p class="text-sm text-gray-500 mb-6">8,000+ with view</p>
+
+        <!-- Listings Grid -->
+        <div class="grid grid-cols-4 gap-6">
+            {% for i in range(8) %}
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="/static/images/house{{ i % 4 + 1 }}.png" alt="Property" class="w-full h-40 object-cover">
+                <div class="p-4 space-y-2">
+                    <div class="text-sm font-semibold">Property Name</div>
+                    <div class="text-sm text-gray-600">Address, City, State</div>
+                    <div class="text-sm text-gray-600">Beds: 2 | Baths: 2 | 1,200 sqft</div>
+                    <div class="text-orange-500 text-sm font-bold">$3,025</div>
+                    <button class="w-full bg-orange-500 text-white py-2 mt-2 rounded text-sm">View Rental Comparison</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Load More -->
+        <div class="flex justify-center mt-8">
+            <button class="bg-black text-white px-6 py-2 rounded">Load More</button>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
